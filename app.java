@@ -1,11 +1,11 @@
 import java.util.*;
 
 class MovieTicketApp{
-    static HashMap<String, String> user_auth = new HashMap<>();
+    public static HashMap<String, String> user_auth = new HashMap<>();
     public static boolean isAdmin = false;
     public static boolean isLogged = false;
     static ArrayList<String> movies = new ArrayList<>();
-    public static Scanner sc = new Scanner(System.in); 
+    static Scanner sc = new Scanner(System.in); 
     static int choice;
     static String username;
     static String password;
@@ -90,12 +90,11 @@ class MovieTicketApp{
     }
 }   
 
-class Authentication extends MovieTicketApp{
-
+class Authentication{
     static void login(String username,String password){
         if(username !=null && password != null){
-            if(user_auth.containsKey(username) && (user_auth.get(username).equals(password))){
-                isLogged = true;
+            if(MovieTicketApp.user_auth.containsKey(username) && (MovieTicketApp.user_auth.get(username).equals(password))){
+                MovieTicketApp.isLogged = true;
                 System.out.println("Logged in Successfully");
             }
             else{
@@ -109,11 +108,11 @@ class Authentication extends MovieTicketApp{
 
     static void signup(String username, String password){
         if(username !=null && password !=null){
-            if(user_auth.containsKey(username)){
+            if(MovieTicketApp.user_auth.containsKey(username)){
                 System.out.println("Username already exists... Please choose another username");
             }
             else{
-                user_auth.put(username,password);
+                MovieTicketApp.user_auth.put(username,password);
                 System.out.println("Successfully Signed Up");
                 login(username,password);
             }
@@ -122,9 +121,5 @@ class Authentication extends MovieTicketApp{
             System.out.println("Signup error");
         }
     }
-
-}
-
-class User extends MovieTicketApp{
 
 }
